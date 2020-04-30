@@ -4,7 +4,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
+import json
+import sys
 
+
+params = json.loads(sys.argv[1])
 
 data = pd.read_csv("dataset/wdbc.data",header=None)
 data.head()
@@ -24,8 +28,7 @@ sc = StandardScaler()
 trainFeatures = sc.fit_transform(trainFeatures)
 testFeatures = sc.transform(testFeatures)
 
-
-classifier = LogisticRegression(solver="liblinear")
+classifier = LogisticRegression(**params)
 ou = classifier.fit(trainFeatures, trainLabel)
 print(ou)
 
