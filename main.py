@@ -6,11 +6,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 import json
 import sys
+import os
 
 
 params = json.loads(sys.argv[1])
 
-data = pd.read_csv("dataset/wdbc.data",header=None)
+script_dir = os.path.dirname(__file__)
+relPath = "dataset/wdbc.data"
+data = pd.read_csv(os.path.join(script_dir,relPath),header=None)
 data.head()
 
 features = data.iloc[:,2:].values
